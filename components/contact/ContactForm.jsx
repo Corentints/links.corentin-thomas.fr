@@ -13,6 +13,7 @@ export default function ContactForm({ setOpen }) {
         data-netlify="true"
         action="/?success"
       >
+        <input type="hidden" name="form-name" value="contact" />
         <div>
           <label
             htmlFor="first-name"
