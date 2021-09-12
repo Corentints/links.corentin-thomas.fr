@@ -41,7 +41,7 @@ export default function ContactForm({ setOpen, setMailSent }) {
       </h3>
       <form
         name="contact"
-        action="/?success=true"
+        action="/"
         method="POST"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
