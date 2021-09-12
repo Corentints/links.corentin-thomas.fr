@@ -8,11 +8,12 @@ export default function ContactForm({ setOpen }) {
         {t("contactForm.contactme")}
       </h3>
       <form
-        method="POST"
-        className="grid grid-cols-1 mt-6 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
-        data-netlify="true"
         name="contact"
-        action="/?success"
+        action="/?success=true"
+        method="POST"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        className="grid grid-cols-1 mt-6 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
       >
         <input type="hidden" name="form-name" value="contact" />
         <div>
