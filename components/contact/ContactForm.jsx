@@ -11,6 +11,7 @@ export default function ContactForm({ setOpen }) {
         method="POST"
         className="grid grid-cols-1 mt-6 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
         data-netlify="true"
+        name="contact"
         action="/?success"
       >
         <input type="hidden" name="form-name" value="contact" />
