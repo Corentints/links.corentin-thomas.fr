@@ -1,4 +1,4 @@
-{
+const en = {
     "header": {
         "visitMyportfolio": "Check my portfolio"
     },
@@ -24,3 +24,5 @@
     },
     "copied": "Copied to clipboard!"
 }
+
+export default en;

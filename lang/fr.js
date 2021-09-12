@@ -1,4 +1,4 @@
-{
+const fr = {
     "header": {
         "visitMyportfolio": "Vers mon portfolio"
     },
@@ -24,3 +24,5 @@
     },
     "copied": "Copié dans le presse-papier !"
 }
+
+export default fr;
