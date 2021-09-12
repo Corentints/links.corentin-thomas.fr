@@ -1,18 +1,22 @@
-import { Fragment, useState, useEffect } from 'react'
-import { Transition } from '@headlessui/react'
-import { CheckCircleIcon } from '@heroicons/react/outline'
-import { XIcon } from '@heroicons/react/solid'
+import { Fragment, useState, useEffect } from "react";
+import { Transition } from "@headlessui/react";
+import { CheckCircleIcon } from "@heroicons/react/outline";
+import { XIcon } from "@heroicons/react/solid";
 import { useTranslation } from "react-i18next";
 
-export default function SuccessContactNotification() {
-  const [show, setShow] = useState(true)
+export default function SuccessContactNotification({ setMailSent }) {
+  const [show, setShow] = useState(true);
   const { t } = useTranslation();
 
-  useEffect(function() {
-    setTimeout(() => {
-      setShow(false)
-    }, 4000)
-  }, [show]);
+  useEffect(
+    function () {
+      setTimeout(() => {
+        setShow(false);
+        setMailSent(false);
+      }, 4000);
+    },
+    [show]
+  );
 
   return (
     <>
@@ -35,20 +39,29 @@ export default function SuccessContactNotification() {
               <div className="p-4">
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
-                    <CheckCircleIcon className="w-6 h-6 text-green-400" aria-hidden="true" />
+                    <CheckCircleIcon
+                      className="w-6 h-6 text-green-400"
+                      aria-hidden="true"
+                    />
                   </div>
                   <div className="ml-3 w-0 flex-1 pt-0.5">
-                    <p className="text-sm font-medium text-gray-900">{t('contactForm.success.title')}</p>
-                    <p className="mt-1 text-sm text-gray-500">{t('contactForm.success.message')}</p>
+                    <p className="text-sm font-medium text-gray-900">
+                      {t("contactForm.success.title")}
+                    </p>
+                    <p className="mt-1 text-sm text-gray-500">
+                      {t("contactForm.success.message")}
+                    </p>
                   </div>
                   <div className="flex flex-shrink-0 ml-4">
                     <button
                       className="inline-flex text-gray-400 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       onClick={() => {
-                        setShow(false)
+                        setShow(false);
                       }}
                     >
-                      <span className="sr-only">{t('contactForm.success.close')}</span>
+                      <span className="sr-only">
+                        {t("contactForm.success.close")}
+                      </span>
                       <XIcon className="w-5 h-5" aria-hidden="true" />
                     </button>
                   </div>
@@ -59,5 +72,5 @@ export default function SuccessContactNotification() {
         </div>
       </div>
     </>
-  )
+  );
 }

@@ -3,7 +3,7 @@ import { useState } from "react";
 import ContactModal from "./contact/ContactModal";
 import { useTranslation } from "react-i18next";
 
-export default function ContactBanner() {
+export default function ContactBanner({ setMailSent }) {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
   return (
@@ -33,7 +33,7 @@ export default function ContactBanner() {
               />
               <span>{t('contactBanner.contactme')}</span>
             </button>
-            <ContactModal open={open} setOpen={setOpen} />
+            <ContactModal open={open} setOpen={setOpen} setMailSent={setMailSent} />
           </div>
         </div>
       </div>

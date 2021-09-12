@@ -1,7 +1,39 @@
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
-export default function ContactForm({ setOpen }) {
+function encode(data) {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&')
+}
+
+export default function ContactForm({ setOpen, setMailSent }) {
   const { t } = useTranslation();
+  const [state, setState] = useState({});
+
+
+  const handleChange = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": form.getAttribute("name"),
+        ...state,
+      }),
+    })
+      .then(() => {
+        setOpen(false);
+        setMailSent(true);
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="px-6 py-10 sm:px-10 lg:col-span-2">
       <h3 className="text-lg font-medium text-warm-gray-900">
@@ -14,6 +46,7 @@ export default function ContactForm({ setOpen }) {
         data-netlify="true"
         data-netlify-honeypot="bot-field"
         className="grid grid-cols-1 mt-6 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
+        onSubmit={handleSubmit}
       >
         <input type="hidden" name="form-name" value="contact" />
         <div>
@@ -31,6 +64,7 @@ export default function ContactForm({ setOpen }) {
               id="first-name"
               autoComplete="given-name"
               className="block w-full px-4 py-3 rounded-md shadow-sm text-warm-gray-900 focus:ring-indigo-500 focus:border-teal-500 border-warm-gray-300"
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -49,6 +83,7 @@ export default function ContactForm({ setOpen }) {
               id="last-name"
               autoComplete="family-name"
               className="block w-full px-4 py-3 rounded-md shadow-sm text-warm-gray-900 focus:ring-indigo-500 focus:border-teal-500 border-warm-gray-300"
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -67,6 +102,7 @@ export default function ContactForm({ setOpen }) {
               type="email"
               autoComplete="email"
               className="block w-full px-4 py-3 rounded-md shadow-sm text-warm-gray-900 focus:ring-indigo-500 focus:border-teal-500 border-warm-gray-300"
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -90,6 +126,7 @@ export default function ContactForm({ setOpen }) {
               autoComplete="tel"
               className="block w-full px-4 py-3 rounded-md shadow-sm text-warm-gray-900 focus:ring-indigo-500 focus:border-teal-500 border-warm-gray-300"
               aria-describedby="phone-optional"
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -107,6 +144,7 @@ export default function ContactForm({ setOpen }) {
               name="subject"
               id="subject"
               className="block w-full px-4 py-3 rounded-md shadow-sm text-warm-gray-900 focus:ring-indigo-500 focus:border-teal-500 border-warm-gray-300"
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -127,6 +165,7 @@ export default function ContactForm({ setOpen }) {
               rows="4"
               className="block w-full my-0 h-[131px] px-4 py-3 border rounded-md shadow-sm text-warm-gray-900 focus:ring-indigo-500 focus:border-teal-500 border-warm-gray-300"
               aria-describedby="message-max"
+              onChange={handleChange}
             ></textarea>
           </div>
         </div>

@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import ContactForm from "./ContactForm";
 
-export default function ContactModal({ setOpen, open }) {
+export default function ContactModal({ setOpen, open, setMailSent }) {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
@@ -41,7 +41,7 @@ export default function ContactModal({ setOpen, open }) {
           >
             <div className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full sm:p-6">
               <div>
-                <ContactForm setOpen={setOpen} />
+                <ContactForm setOpen={setOpen} setMailSent={setMailSent} />
               </div>
             </div>
           </Transition.Child>

@@ -13,7 +13,8 @@ import SuccessContactNotification from "../components/contact/SuccessContactNoti
 import MaltIcon from "../components/icons/MaltIcon";
 
 export default function IndexPage() {
-  const [successContact, setSuccessContact] = useState(null);
+  const [mailSent, setMailSent] = useState(false);
+
   const links = [
     {
       backgroundColor: "#FFFFFF",
@@ -66,18 +67,16 @@ export default function IndexPage() {
       Icon: DiscordIcon,
     },
   ];
-  useEffect(() => {
-    setSuccessContact(new URL(document.location).searchParams.get("success"));
-  }, []);
+
   return (
     <div className="min-h-screen bg-gray-200">
       <Head>
         <title>Corentin THOMAS | Links</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {successContact !== null && <SuccessContactNotification />}
+      {mailSent && <SuccessContactNotification setMailSent={setMailSent} />}
       <BannerHeader />
-      <ContactBanner />
+      <ContactBanner setMailSent={setMailSent} />
       <div className="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
         <div className="py-6 space-y-4 md:py-12 md:grid md:grid-cols-2 md:gap-4 md:space-y-0">
           {links.map((link) => (<Link key={link.alt} {...link} />))}
