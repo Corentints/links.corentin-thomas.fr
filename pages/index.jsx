@@ -11,6 +11,7 @@ import Link from "../components/Link";
 import { useState, useEffect } from "react";
 import SuccessContactNotification from "../components/contact/SuccessContactNotification";
 import MaltIcon from "../components/icons/MaltIcon";
+import Seo from "../components/Seo";
 
 export default function IndexPage() {
   const [mailSent, setMailSent] = useState(false);
@@ -73,6 +74,7 @@ export default function IndexPage() {
       <Head>
         <title>Corentin THOMAS | Links</title>
         <link rel="icon" href="/favicon.ico" />
+        <Seo />
       </Head>
       {mailSent && <SuccessContactNotification setMailSent={setMailSent} />}
       <BannerHeader />
