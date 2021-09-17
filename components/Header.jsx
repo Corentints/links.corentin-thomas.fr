@@ -19,7 +19,7 @@ export default function BannerHeader() {
   }
 
   return (
-    <div className="flex items-center justify-between h-10 px-4 text-sm font-medium text-white bg-indigo-600 sm:px-6 lg:px-8">
+    <div className="flex items-center justify-between h-10 px-4 text-sm font-medium text-white bg-gray-900 sm:px-6 lg:px-8">
       <a href="https://corentin-thomas.fr" target="_blank" className="flex items-center" rel="noreferrer">
         <ArrowLeftIcon className="w-5 h-5 mr-2" />
         {t("header.visitMyportfolio")}

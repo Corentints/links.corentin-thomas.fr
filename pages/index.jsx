@@ -1,14 +1,14 @@
 import Head from "next/head";
-import BannerHeader from "../components/BannerHeader";
+import Header from "../components/Header";
 import ClipboardLink from "../components/ClipboardLink";
-import ContactBanner from "../components/ContactBanner";
+import ContactBanner from "../components/contact/ContactBanner";
 import DevtoIcon from "../components/icons/DevtoIcon";
 import DiscordIcon from "../components/icons/DiscordIcon";
 import GithubIcon from "../components/icons/GithubIcon";
 import LinkedinIcon from "../components/icons/LinkedinIcon";
 import TwitterIcon from "../components/icons/TwitterIcon";
 import Link from "../components/Link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SuccessContactNotification from "../components/contact/SuccessContactNotification";
 import MaltIcon from "../components/icons/MaltIcon";
 import Seo from "../components/Seo";
@@ -18,40 +18,30 @@ export default function IndexPage() {
 
   const links = [
     {
-      backgroundColor: "#FFFFFF",
-      color: "#0A66C2",
       text: "Corentin THOMAS",
       alt: "Linkedin",
       Icon: LinkedinIcon,
       href: "https://www.linkedin.com/in/corentin-thomas/",
     },
     {
-      backgroundColor: "#FF5D57",
-      color: "#FFFFFF",
       text: "Corentin Thomas",
       alt: "Malt",
       Icon: MaltIcon,
       href: "https://www.malt.fr/profile/corentinthomas",
     },
     {
-      backgroundColor: "#353535",
-      color: "#FFFFFF",
       text: "CorentinTS",
       alt: "Github",
       Icon: GithubIcon,
       href: "https://github.com/CorentinTS",
     },
     {
-      backgroundColor: "#353535",
-      color: "#FFFFFF",
       text: "@CorentinTS",
       alt: "Dev.to",
       Icon: DevtoIcon,
       href: "https://dev.to/corentints",
     },
     {
-      backgroundColor: "#1D9BF0",
-      color: "#FFFFFF",
       text: "@CorentinTS",
       alt: "Twitter",
       Icon: TwitterIcon,
@@ -61,8 +51,6 @@ export default function IndexPage() {
 
   const clipBoardLinks = [
     {
-      backgroundColor: "#5865F2",
-      color: "#FFFFFF",
       text: "Corentin#0001",
       alt: "Discord",
       Icon: DiscordIcon,
@@ -77,10 +65,10 @@ export default function IndexPage() {
         <Seo />
       </Head>
       {mailSent && <SuccessContactNotification setMailSent={setMailSent} />}
-      <BannerHeader />
+      <Header />
       <ContactBanner setMailSent={setMailSent} />
-      <div className="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
-        <div className="py-6 space-y-4 md:py-12 md:grid md:grid-cols-2 md:gap-4 md:space-y-0">
+      <div className="max-w-2xl px-4 mx-auto sm:px-6 lg:px-8">
+        <div className="py-6 space-y-4">
           {links.map((link) => (<Link key={link.alt} {...link} />))}
           {clipBoardLinks.map((link) => (<ClipboardLink key={link.alt} {...link} />))}
         </div>

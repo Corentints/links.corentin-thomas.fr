@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { ClipboardIcon } from "@heroicons/react/outline";
 import { useTranslation } from "react-i18next";
 
-export default function ClipboardLink({ backgroundColor, color, Icon, text, alt }) {
+export default function ClipboardLink({ Icon, text, alt }) {
   const clipBoardText = useRef(null);
   const { t } = useTranslation();
 
@@ -15,9 +15,8 @@ export default function ClipboardLink({ backgroundColor, color, Icon, text, alt 
   }
 
   return (
-    <a
-      style={{ backgroundColor, color }}
-      className="flex items-center justify-between w-full p-4 text-xl transition duration-300 ease-in-out transform rounded-lg cursor-pointer hover:-translate-y-0.5 hover:scale-102"
+    <button type="button"
+      className="flex items-center bg-white justify-between w-full p-4 text-xl transition duration-300 ease-in-out transform rounded-lg cursor-pointer hover:-translate-y-0.5 hover:scale-102"
       onClick={copyLink}
     >
       <div className="flex">
@@ -25,6 +24,6 @@ export default function ClipboardLink({ backgroundColor, color, Icon, text, alt 
         <span ref={clipBoardText} className="ml-3"><span className="sr-only">{alt}: </span> {text}</span>
       </div>
       <ClipboardIcon className="w-6 h-6" />
-    </a>
+    </button>
   );
 }
